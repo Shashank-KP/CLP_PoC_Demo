@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ReceiveVehiclesCoordinates"
+		targetNamespace="http://iec.ch/TC57/2011/ReceiveVehiclesCoordinates"
+		xmlns:tns="http://iec.ch/TC57/2011/ReceiveVehiclesCoordinates"
+		xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+		xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+		xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+		xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/"
+		xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+		xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+		xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+		xmlns:infoMessage="http://iec.ch/TC57/2011/VehiclesCoordinatesMessage">
+	<wsdl:types>
+		<xs:schema targetNamespace="http://iec.ch/TC57/2011/ReceiveVehiclesCoordinates" elementFormDefault="qualified">
+			<xs:import namespace="http://iec.ch/TC57/2011/VehiclesCoordinatesMessage" schemaLocation="xsd/VehiclesCoordinatesMessage.xsd"/>
+		</xs:schema>
+	</wsdl:types>
+	<!-- Message Definitions -->
+	<wsdl:message name="ChangedVehiclesCoordinatesEventMessage">
+		<wsdl:part name="ChangedVehiclesCoordinatesEventMessage" element="infoMessage:ChangedVehiclesCoordinates"/>
+	</wsdl:message>
+	<wsdl:message name="ResponseMessage">
+		<wsdl:part name="ResponseMessage" element="infoMessage:VehiclesCoordinatesResponseMessage"/>
+	</wsdl:message>
+	<wsdl:message name="FaultMessage">
+		<wsdl:part name="FaultMessage" element="infoMessage:VehiclesCoordinatesFaultMessage"/>
+	</wsdl:message>
+	<!-- Port Definitions -->
+	<wsdl:portType name="VehiclesCoordinates_Port">
+		<wsdl:operation name="ChangedVehiclesCoordinates">
+			<wsdl:input name="ChangedVehiclesCoordinatesEvent" message="tns:ChangedVehiclesCoordinatesEventMessage"/>
+			<wsdl:output name="ChangedVehiclesCoordinatesResponse" message="tns:ResponseMessage"/>
+			<wsdl:fault name="ChangedVehiclesCoordinatesFault" message="tns:FaultMessage"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="VehiclesCoordinates_Binding" type="tns:VehiclesCoordinates_Port">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="ChangedVehiclesCoordinates">
+			<soap:operation soapAction="http://iec.ch/TC57/2011/VehiclesCoordinates/ChangedVehiclesCoordinates" style="document"/>
+			<wsdl:input name="ChangedVehiclesCoordinatesEvent">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="ChangedVehiclesCoordinatesResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="ChangedVehiclesCoordinatesFault">
+				<soap:fault name="ChangedVehiclesCoordinatesFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="ReceiveVehiclesCoordinates">
+		<wsdl:port name="VehiclesCoordinates_Port" binding="tns:VehiclesCoordinates_Binding">
+			<soap:address location="http://iec.ch/TC57/2011/ReceiveVehiclesCoordinates"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

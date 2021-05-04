@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:a="http://langdale.com.au/2005/Message#" xmlns:sawsdl="http://www.w3.org/ns/sawsdl" targetNamespace="http://iec.ch/TC57/2007/VehiclesCoordinates#" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="http://langdale.com.au/2005/Message#" xmlns:m="http://iec.ch/TC57/2007/VehiclesCoordinates#">
+	<xs:annotation/>
+	<xs:element name="VehiclesCoordinates">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Vehicle" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#Vehicle" minOccurs="1">
+					<xs:complexType>
+						<xs:annotation>
+							<xs:documentation>Vehicle asset.</xs:documentation>
+						</xs:annotation>
+						<xs:sequence>
+							<xs:element name="mRID" minOccurs="1" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IdentifiedObject.mRID">
+								<xs:annotation>
+									<xs:documentation>Master resource identifier issued by a model authority. The mRID is globally unique within an exchange context.</xs:documentation>
+									<xs:documentation>Global uniqeness is easily achived by using a UUID for the mRID. It is strongly recommended to do this.</xs:documentation>
+									<xs:documentation>For CIMXML data files in RDF syntax, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="name" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IdentifiedObject.name">
+								<xs:annotation>
+									<xs:documentation>The name is any free human readable and possibly non unique text naming the object.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="odometerReadDateTime" minOccurs="0" maxOccurs="1" type="xs:dateTime" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#Vehicle.odometerReadDateTime">
+								<xs:annotation>
+									<xs:documentation>Date and time the last odometer reading was recorded.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="PositionPoint" minOccurs="1" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#Vehicle.PositionPoint">
+								<xs:annotation/>
+								<xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#PositionPoint">
+									<xs:sequence>
+										<xs:element name="xPosition" minOccurs="1" maxOccurs="1" type="xs:double" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#PositionPoint.xPosition">
+											<xs:annotation>
+												<xs:documentation>X axis position.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="yPosition" minOccurs="1" maxOccurs="1" type="xs:double" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#PositionPoint.yPosition">
+											<xs:annotation>
+												<xs:documentation>Y axis position.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

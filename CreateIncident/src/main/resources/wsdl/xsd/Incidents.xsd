@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:a="http://langdale.com.au/2005/Message#" xmlns:sawsdl="http://www.w3.org/ns/sawsdl" targetNamespace="http://iec.ch/TC57/2007/Incidents#" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="http://langdale.com.au/2005/Message#" xmlns:m="http://iec.ch/TC57/2007/Incidents#">
+<xs:annotation/>
+<xs:element name="Incidents" type="m:Incidents"/>
+<xs:complexType name="Incidents">
+<xs:sequence>
+<xs:element name="IncidentRecord" type="m:IncidentRecord" minOccurs="1" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="IncidentRecord" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IncidentRecord">
+<xs:annotation>
+<xs:documentation>Document describing the incident reported in a TroubleTicket. If the incident has to do with an outage, this will be associated with an OutageRecord. Primary cause of the incident is captured in inherited 'type'.</xs:documentation>
+</xs:annotation>
+<xs:sequence>
+<xs:element name="mRID" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IdentifiedObject.mRID">
+<xs:annotation>
+<xs:documentation>Master resource identifier issued by a model authority. The mRID is globally unique within an exchange context.</xs:documentation>
+<xs:documentation>Global uniqeness is easily achived by using a UUID for the mRID. It is strongly recommended to do this.</xs:documentation>
+<xs:documentation>For CIMXML data files in RDF syntax, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="actualArrivalTime" minOccurs="0" maxOccurs="1" type="xs:dateTime" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IncidentRecord.actualArrivalTime">
+<xs:annotation>
+<xs:documentation>Actual arrival time of first crew to the incident.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="ancestors" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IncidentRecord.ancestors">
+<xs:annotation>
+<xs:documentation>IDs of incidents based on which current incident occurred in case of complex incident actions (merge, split, roll up, roll down, etc.).</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="comment" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#Document.comment">
+<xs:annotation>
+<xs:documentation>Free text comment.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="createdDateTime" minOccurs="0" maxOccurs="1" type="xs:dateTime" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#Document.createdDateTime">
+<xs:annotation>
+<xs:documentation>Date and time that this document was created.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="estimatedArrivalTime" minOccurs="0" maxOccurs="1" type="xs:dateTime" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IncidentRecord.estimatedArrivalTime">
+<xs:annotation>
+<xs:documentation>Estimated arrival time of first crew to the incident.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="estimatedRestorationTime" minOccurs="0" maxOccurs="1" type="xs:dateTime" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IncidentRecord.estimatedRestorationTime">
+<xs:annotation>
+<xs:documentation>Estimated end time of the incident</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="name" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IdentifiedObject.name">
+<xs:annotation>
+<xs:documentation>The name is any free human readable and possibly non unique text naming the object.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="priority" minOccurs="0" maxOccurs="1" type="xs:integer" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IncidentRecord.priority">
+<xs:annotation>
+<xs:documentation>Priority of an incident (by default there are 5, 1 is the highest, 5 the lowest). Priority of the incident is affected by the number of affected customers, number of affected critical customers, affected power, affected critical power, outage time of an incident and existence of hazards.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="Circuits" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IncidentRecord.Circuits">
+<xs:annotation/>
+<xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#Circuit">
+<xs:sequence>
+<xs:element name="mRID" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IdentifiedObject.mRID">
+<xs:annotation>
+<xs:documentation>Master resource identifier issued by a model authority. The mRID is globally unique within an exchange context.</xs:documentation>
+<xs:documentation>Global uniqeness is easily achived by using a UUID for the mRID. It is strongly recommended to do this.</xs:documentation>
+<xs:documentation>For CIMXML data files in RDF syntax, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="name" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IdentifiedObject.name">
+<xs:annotation>
+<xs:documentation>The name is any free human readable and possibly non unique text naming the object.</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="Crews" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IncidentRecord.Crews">
+<xs:annotation/>
+<xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#Crew">
+<xs:sequence>
+<xs:element name="mRID" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IdentifiedObject.mRID">
+<xs:annotation>
+<xs:documentation>Master resource identifier issued by a model authority. The mRID is globally unique within an exchange context.</xs:documentation>
+<xs:documentation>Global uniqeness is easily achived by using a UUID for the mRID. It is strongly recommended to do this.</xs:documentation>
+<xs:documentation>For CIMXML data files in RDF syntax, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="name" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IdentifiedObject.name">
+<xs:annotation>
+<xs:documentation>The name is any free human readable and possibly non unique text naming the object.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="Assignments" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#Crew.Assignments">
+<xs:annotation>
+<xs:documentation>All Assignments for this Crew.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#Assignment">
+<xs:sequence>
+<xs:element name="status" minOccurs="1" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#Document.status">
+<xs:annotation>
+<xs:documentation>Status of subject matter (e.g., Agreement, Work) this document represents. For status of the document itself, use 'docStatus' attribute.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#Status">
+<xs:sequence>
+<xs:element name="value" minOccurs="1" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#Status.value">
+<xs:annotation>
+<xs:documentation>Status value at 'dateTime'; prior status changes may have been kept in instances of activity records associated with the object to which this status applies.</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="IncidentCodes" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IncidentRecord.IncidentCodes">
+<xs:annotation/>
+<xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IncidentCode">
+<xs:sequence>
+<xs:element name="name" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IdentifiedObject.name">
+<xs:annotation>
+<xs:documentation>The name is any free human readable and possibly non unique text naming the object.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="subCode" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IncidentCode.subCode">
+<xs:annotation>
+<xs:documentation>Additional level of classification detail (as extension to the main code found in association to Name).</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="IncidentHazards" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IncidentRecord.IncidentHazards">
+<xs:annotation/>
+<xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IncidentHazard">
+<xs:sequence>
+<xs:element name="mRID" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IdentifiedObject.mRID">
+<xs:annotation>
+<xs:documentation>Master resource identifier issued by a model authority. The mRID is globally unique within an exchange context.</xs:documentation>
+<xs:documentation>Global uniqeness is easily achived by using a UUID for the mRID. It is strongly recommended to do this.</xs:documentation>
+<xs:documentation>For CIMXML data files in RDF syntax, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="name" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IdentifiedObject.name">
+<xs:annotation>
+<xs:documentation>The name is any free human readable and possibly non unique text naming the object.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="type" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#Hazard.type">
+<xs:annotation>
+<xs:documentation>Classification by utility's corporate standards and practices.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="status" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#Hazard.status">
+<xs:annotation/>
+<xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#Status">
+<xs:sequence>
+<xs:element name="value" minOccurs="1" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#Status.value">
+<xs:annotation>
+<xs:documentation>Status value at 'dateTime'; prior status changes may have been kept in instances of activity records associated with the object to which this status applies.</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="OutageRecord" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IncidentRecord.OutageRecord">
+<xs:annotation/>
+<xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#OutageRecord">
+<xs:sequence>
+<xs:element name="isPlanned" minOccurs="0" maxOccurs="1" type="xs:boolean" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#OutageRecord.isPlanned">
+<xs:annotation>
+<xs:documentation>True if planned, false otherwise (for example due to a breaker trip).</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="Equipments" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#OutageRecord.Equipments">
+<xs:annotation/>
+<xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#Equipment">
+<xs:sequence>
+<xs:element name="mRID" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IdentifiedObject.mRID">
+<xs:annotation>
+<xs:documentation>Master resource identifier issued by a model authority. The mRID is globally unique within an exchange context.</xs:documentation>
+<xs:documentation>Global uniqeness is easily achived by using a UUID for the mRID. It is strongly recommended to do this.</xs:documentation>
+<xs:documentation>For CIMXML data files in RDF syntax, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="name" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IdentifiedObject.name">
+<xs:annotation>
+<xs:documentation>The name is any free human readable and possibly non unique text naming the object.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="upstreamDevice" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#Equipment.upstreamDevice">
+<xs:annotation/>
+</xs:element>
+<xs:element name="Location" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#PowerSystemResource.Location">
+<xs:annotation>
+<xs:documentation>Location of this power system resource.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#Location">
+<xs:sequence>
+<xs:element name="direction" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#Location.direction">
+<xs:annotation>
+<xs:documentation>(if applicable) Direction that allows field crews to quickly find a given asset. For a given location, such as a street address, this is the relative direction in which to find the asset. For example, a streetlight may be located at the 'NW' (northwest) corner of the customer's site, or a usage point may be located on the second floor of an apartment building.</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="Measurements" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#PowerSystemResource.Measurements">
+<xs:annotation>
+<xs:documentation>The measurements associated with this power system resource.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#Measurement">
+<xs:sequence>
+<xs:element name="phases" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#Measurement.phases">
+<xs:annotation>
+<xs:documentation>Indicates to which phases the measurement applies and avoids the need to use 'measurementType' to also encode phase information (which would explode the types). Since Controls have associations with Measurements, they will have the capability to handle each phase. The phase information in Measurement, along with 'measurementType' and 'phases' uniquely defines a Measurement for a device, based on normal network phase. Their meaning will not change when the computed energizing phasing is changed due to jumpers or other reasons.</xs:documentation>
+</xs:annotation>
+<xs:simpleType sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#PhaseCode">
+<xs:restriction base="xs:string">
+<xs:enumeration value="A">
+<xs:annotation>
+<xs:documentation>Phase A.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="AB">
+<xs:annotation>
+<xs:documentation>Phases A and B.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="ABC">
+<xs:annotation>
+<xs:documentation>Phases A, B, and C.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="ABCN">
+<xs:annotation>
+<xs:documentation>Phases A, B, C, and N.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="ABN">
+<xs:annotation>
+<xs:documentation>Phases A, B, and neutral.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="AC">
+<xs:annotation>
+<xs:documentation>Phases A and C.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="ACN">
+<xs:annotation>
+<xs:documentation>Phases A, C and neutral.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="AN">
+<xs:annotation>
+<xs:documentation>Phases A and neutral.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="B">
+<xs:annotation>
+<xs:documentation>Phase B.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="BC">
+<xs:annotation>
+<xs:documentation>Phases B and C.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="BCN">
+<xs:annotation>
+<xs:documentation>Phases B, C, and neutral.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="BN">
+<xs:annotation>
+<xs:documentation>Phases B and neutral.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="C">
+<xs:annotation>
+<xs:documentation>Phase C.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="CN">
+<xs:annotation>
+<xs:documentation>Phases C and neutral.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="N">
+<xs:annotation>
+<xs:documentation>Neutral phase.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="s1">
+<xs:annotation>
+<xs:documentation>Secondary phase 1.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="s12">
+<xs:annotation>
+<xs:documentation>Secondary phase 1 and 2.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="s12N">
+<xs:annotation>
+<xs:documentation>Secondary phases 1, 2, and neutral.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="s1N">
+<xs:annotation>
+<xs:documentation>Secondary phase 1 and neutral.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="s2">
+<xs:annotation>
+<xs:documentation>Secondary phase 2.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="s2N">
+<xs:annotation>
+<xs:documentation>Secondary phase 2 and neutral.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="DiscreteValues" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#Discrete.DiscreteValues">
+<xs:annotation>
+<xs:documentation>The values connected to this measurement.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#DiscreteValue">
+<xs:sequence>
+<xs:element name="timeStamp" minOccurs="0" maxOccurs="1" type="xs:dateTime" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#MeasurementValue.timeStamp">
+<xs:annotation>
+<xs:documentation>The time when the value was last updated</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="value" minOccurs="1" maxOccurs="1" type="xs:integer" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#DiscreteValue.value">
+<xs:annotation>
+<xs:documentation>The value to supervise.</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="PSREvent" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#PowerSystemResource.PSREvent">
+<xs:annotation>
+<xs:documentation>All events associated with this power system resource.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#PSREvent">
+<xs:sequence>
+<xs:element name="createdDateTime" minOccurs="0" maxOccurs="1" type="xs:dateTime" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#ActivityRecord.createdDateTime">
+<xs:annotation>
+<xs:documentation>Date and time this activity record has been created (different from the 'status.dateTime', which is the time of a status change of the associated object, if applicable).</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="type" minOccurs="1" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#ActivityRecord.type">
+<xs:annotation>
+<xs:documentation>Type of event resulting in this activity record.</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="PSRType" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#PowerSystemResource.PSRType">
+<xs:annotation>
+<xs:documentation>Custom classification for this power system resource.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#PSRType">
+<xs:sequence>
+<xs:element name="mRID" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IdentifiedObject.mRID">
+<xs:annotation>
+<xs:documentation>Master resource identifier issued by a model authority. The mRID is globally unique within an exchange context.</xs:documentation>
+<xs:documentation>Global uniqeness is easily achived by using a UUID for the mRID. It is strongly recommended to do this.</xs:documentation>
+<xs:documentation>For CIMXML data files in RDF syntax, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="OutageCodes" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#OutageRecord.OutageCodes">
+<xs:annotation>
+<xs:documentation>Multiple outage codes may apply to an outage record.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#OutageCode">
+<xs:sequence>
+<xs:element name="name" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IdentifiedObject.name">
+<xs:annotation>
+<xs:documentation>The name is any free human readable and possibly non unique text naming the object.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="subCode" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#OutageCode.subCode">
+<xs:annotation>
+<xs:documentation>The main code is stored in the inherited association to Name. This sub-code provides an additional level of classification detail.</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="OutageReport" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#OutageRecord.OutageReport">
+<xs:annotation>
+<xs:documentation>Report.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#OutageReport">
+<xs:sequence>
+<xs:element name="criticalCustomerCount" minOccurs="0" maxOccurs="1" type="xs:integer" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#OutageReport.criticalCustomerCount">
+<xs:annotation/>
+</xs:element>
+<xs:element name="customerCount" minOccurs="0" maxOccurs="1" type="xs:integer" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#OutageReport.customerCount">
+<xs:annotation>
+<xs:documentation>Total number of outaged customers.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="totalCml" minOccurs="0" maxOccurs="1" type="m:Minutes" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#OutageReport.totalCml">
+<xs:annotation>
+<xs:documentation>Total Customer Minutes Lost (CML).</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="unrestoredCriticalCustomerCount" minOccurs="0" maxOccurs="1" type="xs:integer" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#OutageReport.unrestoredCriticalCustomerCount">
+<xs:annotation/>
+</xs:element>
+<xs:element name="unrestoredCustomerCount" minOccurs="0" maxOccurs="1" type="xs:integer" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#OutageReport.unrestoredCustomerCount">
+<xs:annotation/>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="status" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#Document.status">
+<xs:annotation>
+<xs:documentation>Status of subject matter (e.g., Agreement, Work) this document represents. For status of the document itself, use 'docStatus' attribute.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#Status">
+<xs:sequence>
+<xs:element name="value" minOccurs="1" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#Status.value">
+<xs:annotation>
+<xs:documentation>Status value at 'dateTime'; prior status changes may have been kept in instances of activity records associated with the object to which this status applies.</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="period" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IncidentRecord.period">
+<xs:annotation>
+<xs:documentation>Period between the first customer impacted by the incident and the incident resolution for all customers impacted.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#DateTimeInterval">
+<xs:sequence>
+<xs:element name="end" minOccurs="0" maxOccurs="1" type="xs:dateTime" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#DateTimeInterval.end">
+<xs:annotation>
+<xs:documentation>End date and time of this interval.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="start" minOccurs="0" maxOccurs="1" type="xs:dateTime" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#DateTimeInterval.start">
+<xs:annotation>
+<xs:documentation>Start date and time of this interval.</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="PositionPoint" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IncidentRecord.PositionPoint">
+<xs:annotation/>
+<xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#PositionPoint">
+<xs:sequence>
+<xs:element name="xPosition" minOccurs="1" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#PositionPoint.xPosition">
+<xs:annotation>
+<xs:documentation>X axis position.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="yPosition" minOccurs="1" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#PositionPoint.yPosition">
+<xs:annotation>
+<xs:documentation>Y axis position.</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="Region" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IncidentRecord.Region">
+<xs:annotation/>
+<xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#GeographicalRegion">
+<xs:sequence>
+<xs:element name="mRID" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IdentifiedObject.mRID">
+<xs:annotation>
+<xs:documentation>Master resource identifier issued by a model authority. The mRID is globally unique within an exchange context.</xs:documentation>
+<xs:documentation>Global uniqeness is easily achived by using a UUID for the mRID. It is strongly recommended to do this.</xs:documentation>
+<xs:documentation>For CIMXML data files in RDF syntax, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="name" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IdentifiedObject.name">
+<xs:annotation>
+<xs:documentation>The name is any free human readable and possibly non unique text naming the object.</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="Resolution" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IncidentRecord.Resolution">
+<xs:annotation/>
+<xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#Resolution">
+<xs:sequence>
+<xs:element name="constructionType" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#Resolution.constructionType">
+<xs:annotation>
+<xs:documentation>Field for defining type of the construction on which work was performed.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="dataProblem" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#Resolution.dataProblem">
+<xs:annotation>
+<xs:documentation>Indication whether there was problem with data.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="failedComponent" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#Resolution.failedComponent">
+<xs:annotation>
+<xs:documentation>Field to define type of component on which was problem.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="material" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#Resolution.material">
+<xs:annotation>
+<xs:documentation>Material used for repair.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="referTo" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#Resolution.referTo">
+<xs:annotation>
+<xs:documentation>Field used to set who was processing incident.</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="status" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#Document.status">
+<xs:annotation>
+<xs:documentation>Status of subject matter (e.g., Agreement, Work) this document represents. For status of the document itself, use 'docStatus' attribute.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#Status">
+<xs:sequence>
+<xs:element name="remark" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#Status.remark">
+<xs:annotation>
+<xs:documentation>Pertinent information regarding the current 'value', as free form text.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="value" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#Status.value">
+<xs:annotation>
+<xs:documentation>Status value at 'dateTime'; prior status changes may have been kept in instances of activity records associated with the object to which this status applies.</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="Substation" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IncidentRecord.Substation">
+<xs:annotation/>
+<xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#Substation">
+<xs:sequence>
+<xs:element name="mRID" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IdentifiedObject.mRID">
+<xs:annotation>
+<xs:documentation>Master resource identifier issued by a model authority. The mRID is globally unique within an exchange context.</xs:documentation>
+<xs:documentation>Global uniqeness is easily achived by using a UUID for the mRID. It is strongly recommended to do this.</xs:documentation>
+<xs:documentation>For CIMXML data files in RDF syntax, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="name" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IdentifiedObject.name">
+<xs:annotation>
+<xs:documentation>The name is any free human readable and possibly non unique text naming the object.</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="Work" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IncidentRecord.Work">
+<xs:annotation/>
+<xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#Work">
+<xs:sequence>
+<xs:element name="mRID" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IdentifiedObject.mRID">
+<xs:annotation>
+<xs:documentation>Master resource identifier issued by a model authority. The mRID is globally unique within an exchange context.</xs:documentation>
+<xs:documentation>Global uniqeness is easily achived by using a UUID for the mRID. It is strongly recommended to do this.</xs:documentation>
+<xs:documentation>For CIMXML data files in RDF syntax, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="name" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IdentifiedObject.name">
+<xs:annotation>
+<xs:documentation>The name is any free human readable and possibly non unique text naming the object.</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="Zones" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IncidentRecord.Zones">
+<xs:annotation/>
+<xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#Zone">
+<xs:sequence>
+<xs:element name="mRID" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IdentifiedObject.mRID">
+<xs:annotation>
+<xs:documentation>Master resource identifier issued by a model authority. The mRID is globally unique within an exchange context.</xs:documentation>
+<xs:documentation>Global uniqeness is easily achived by using a UUID for the mRID. It is strongly recommended to do this.</xs:documentation>
+<xs:documentation>For CIMXML data files in RDF syntax, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="name" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#IdentifiedObject.name">
+<xs:annotation>
+<xs:documentation>The name is any free human readable and possibly non unique text naming the object.</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:simpleType name="Minutes" sawsdl:modelReference="http://iec.ch/TC57/2010/CIM-schema-cim15#Minutes">
+<xs:annotation>
+<xs:documentation>Time in minutes.</xs:documentation>
+</xs:annotation>
+<xs:restriction base="xs:float"/>
+</xs:simpleType>
+</xs:schema>

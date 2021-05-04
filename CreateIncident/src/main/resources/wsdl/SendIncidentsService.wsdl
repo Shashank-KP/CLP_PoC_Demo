@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="SendIncidents"
+		targetNamespace="http://iec.ch/TC57/2011/SendIncidents"
+		xmlns:tns="http://iec.ch/TC57/2011/SendIncidents"
+		xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+		xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+		xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+		xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/"
+		xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+		xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+		xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+		xmlns:m1="http://iec.ch/TC57/2011/IncidentsMessage">
+	<wsdl:types>
+		<xs:schema targetNamespace="http://iec.ch/TC57/2011/SendIncidents" elementFormDefault="qualified">
+			<xs:import namespace="http://iec.ch/TC57/2011/IncidentsMessage" schemaLocation="xsd/IncidentsMessage.xsd"/>
+		</xs:schema>
+	</wsdl:types>
+	<!-- Message Definitions -->
+	<wsdl:message name="CreatedIncidentsEventMessage">
+		<wsdl:part name="CreatedIncidentsEventMessage" element="m1:CreatedIncidents"/>
+	</wsdl:message>	
+	<wsdl:message name="CreatedIncidentsResponseMessage">
+		<wsdl:part name="CreatedIncidentsResponseMessage" element="m1:IncidentsResponseMessage"/>
+	</wsdl:message>
+	<wsdl:message name="CreatedIncidentsFaultMessage">	
+		<wsdl:part name="CreatedIncidentsFaultMessage" element="m1:IncidentsFaultMessage"/>
+	</wsdl:message>
+	<!-- Port Definitions -->
+	<wsdl:portType name="Incidents_Port">
+		<wsdl:operation name="CreatedIncidents">
+			<wsdl:input name="CreatedIncidentsEvent" message="tns:CreatedIncidentsEventMessage"/>
+			<wsdl:output name="CreatedIncidentsResponse" message="tns:CreatedIncidentsResponseMessage"/>
+			<wsdl:fault name="CreatedIncidentsFault" message="tns:CreatedIncidentsFaultMessage"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="Incidents_Binding" type="tns:Incidents_Port">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="CreatedIncidents">
+			<soap:operation soapAction="http://iec.ch/TC57/2011/Incidents/CreatedIncidents" style="document"/>
+			<wsdl:input name="CreatedIncidentsEvent">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="CreatedIncidentsResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="CreatedIncidentsFault">
+				<soap:fault name="CreatedIncidentsFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="SendIncidents">
+		<wsdl:port name="Incidents_Port" binding="tns:Incidents_Binding">
+			<soap:address location="http://iec.ch/TC57/2011/SendIncidents"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
